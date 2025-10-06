@@ -1,0 +1,151 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* Dashboard Layout */
+.dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Chart Styles */
+.chart-wrapper {
+    flex: 1 1 45%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 250px !important;
+}
+
+/* Table Styles */
+.table-wrapper {
+    flex: 1 1 100%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+thead th {
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+    filter: brightness(0.95);
+}
+
+/* Sentiment Colors */
+tbody tr.positive {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: bold;
+}
+
+tbody tr.negative {
+    background-color: #f8d7da;
+    color: #721c24;
+    font-weight: bold;
+}
+
+tbody tr.neutral {
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: bold;
+}
+
+/* Text Prediction */
+.text-predict-wrapper {
+    flex: 1 1 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    margin-top: 20px;
+}
+
+.text-predict-wrapper h2 {
+    margin-bottom: 10px;
+}
+
+.text-predict-wrapper textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.text-predict-wrapper button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.text-predict-wrapper button:hover {
+    background-color: #0056b3;
+}
+
+#predictionResult {
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .chart-wrapper { flex: 1 1 100%; }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit AI Sentiment Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>📊 Reddit AI Sentiment Dashboard</h1>
+    <p class="subtitle">Live AI-driven sentiment and emotion analysis of Reddit posts</p>
+
+    <!-- Subreddit Selection -->
+    <div class="subreddit-select-wrapper">
+        <label for="subredditSelect">Choose Subreddit:</label>
+        <select id="subredditSelect">
+            <option value="technology" {% if current_subreddit=='technology' %}selected{% endif %}>Technology</option>
+            <option value="gaming" {% if current_subreddit=='gaming' %}selected{% endif %}>Gaming</option>
+            <option value="science" {% if current_subreddit=='science' %}selected{% endif %}>Science</option>
+            <option value="movies" {% if current_subreddit=='movies' %}selected{% endif %}>Movies</option>
+            <option value="sports" {% if current_subreddit=='sports' %}selected{% endif %}>Sports</option>
+        </select>
+        <button id="updateSubredditBtn">Update Subreddit</button>
+    </div>
+
+    <div class="dashboard-content">
+
+        <!-- AI Sentiment Doughnut Chart -->
+        <div class="chart-wrapper">
+            <canvas id="aiSentimentChart"
+                    data-positive="{{ ai_positive }}"
+                    data-negative="{{ ai_negative }}"
+                    data-neutral="{{ ai_neutral }}"></canvas>
+        </div>
+
+        <!-- Emotion Bar Chart -->
+        <div class="chart-wrapper">
+            <canvas id="emotionChart"
+                    data-joy="{{ emotion_counts['joy'] }}"
+                    data-anger="{{ emotion_counts['anger'] }}"
+                    data-fear="{{ emotion_counts['fear'] }}"
+                    data-sadness="{{ emotion_counts['sadness'] }}"
+                    data-love="{{ emotion_counts['love'] }}"
+                    data-surprise="{{ emotion_counts['surprise'] }}"></canvas>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>AI Sentiment</th>
+                    <th>AI Score</th>
+                    <th>Emotion</th>
+                    <th>Emotion Score</th>
+                    <th>Post Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                <tr class="{{ post.ai_sentiment | lower }}">
+                    <td>{{ post.ai_sentiment }}</td>
+                    <td>{{ post.ai_sentiment_score | round(2) }}</td>
+                    <td>{{ post.emotion }}</td>
+                    <td>{{ post.emotion_score | round(2) }}</td>
+                    <td><a href="https://reddit.com{{ post.permalink }}" target="_blank">{{ post.title }}</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Text Prediction Feature -->
+        <div class="text-predict-wrapper">
+            <h2>📝 Predict Sentiment & Emotion</h2>
+            <textarea id="userText" placeholder="Type your text here..." rows="3"></textarea>
+            <button id="predictBtn">Predict</button>
+            <div id="predictionResult"></div>
+        </div>
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='chart.js') }}"></script>
+<script src="{{ url_for('static', filename='text_predict.js') }}"></script>
+</body>
+</html>
