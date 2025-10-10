@@ -3,8 +3,8 @@ from ai_processing import enrich_post  # AI sentiment + emotion
 
 # Reddit API credentials
 reddit = praw.Reddit(
-    client_id="Kx69b8QFluUljCk32lZThg",
-    client_secret="aVdiyCHVb9DZ52rI1PrEXdCKrK3eiw",
+    client_id="",
+    client_secret="",
     user_agent="RealTimeSentimentBot/0.1"
 )
 reddit.read_only = True
